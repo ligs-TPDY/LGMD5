@@ -16,8 +16,9 @@
 
 + (NSString *)fileMD5:(NSData *)fileData
 {
+    const char*original_str = (const char *)[fileData bytes];
     unsigned char result[CC_MD5_LENGTH];
-    CC_MD5(fileData.bytes, (CC_LONG)fileData.length, result);
+    CC_MD5(original_str, (CC_LONG)fileData.length, result);
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_LENGTH * 2];
     for( int i = 0; i < CC_MD5_LENGTH; i++ )
     {
